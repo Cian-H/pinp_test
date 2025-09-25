@@ -1,4 +1,4 @@
-FROM docker.io/library/alpine:latest
+FROM docker.io/opensuse/leap:latest
 
 COPY ./entrypoint.sh /entrypoint.sh
 

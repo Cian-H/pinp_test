@@ -1,11 +1,11 @@
-FROM docker.io/library/alpine:latest
+FROM docker.io/opensuse/leap:latest
 
 COPY ./entrypoint.sh /entrypoint.sh
 COPY ./inner/ /inner/
+COPY ./storage.conf /etc/containers/storage.conf
 
-RUN apk update && \
-    apk add iptables openrc podman podman-openrc runc && \
-    printf "[storage]\ndriver = \"vfs\"\n" > /etc/containers/storage.conf && \
+RUN zypper --non-interactive refresh && \
+    zypper --non-interactive install podman runc && \
     chmod +x /entrypoint.sh
 
 ENTRYPOINT /entrypoint.sh
