@@ -4,7 +4,7 @@ COPY ./entrypoint.sh /entrypoint.sh
 COPY ./inner/ /inner/
 
 RUN apk update && \
-    apk add iptables openrc podman podman-openrc && \
+    apk add iptables openrc podman podman-openrc runc && \
     printf "[storage]\ndriver = \"vfs\"\n" > /etc/containers/storage.conf && \
     chmod +x /entrypoint.sh
 
